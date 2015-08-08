@@ -1,0 +1,8 @@
+name = Drupal Melbourne Commerce
+core = 7.x
+dependencies[] = commerce_cart
+dependencies[] = commerce_ajax_cart
+dependencies[] = cacheexclude
+dependencies[] = memcache
+dependencies[] = memcache_admin
+dependencies[] = session_cache

@@ -1,0 +1,59 @@
+<?php
+/**
+ * @file
+ * Drupal Melbourne Commerce.
+ */
+
+/**
+ * Implements hook_init().
+ */
+function dm_commerce_init(){
+
+  // Create commerce session on checkout.
+  if(strpos(current_path(), 'checkout') === 0) {
+    commerce_cart_order_session_save(dm_commerce_commerce_cart_order_id($GLOBALS['user']->uid));
+  }
+  
+}
+
+/**
+ * Implements hook_commerce_cart_order_id()
+ */
+function dm_commerce_commerce_cart_order_id($uid){
+
+  if (empty($_SESSION) && !empty($_COOKIE)) {
+
+    $order_cid = 'dm_commerce_order_id_' . session_cache_get_sid();
+
+    if ($cart_order_id[$uid] = session_cache_get($order_cid)) {
+      if ($uid > 0) {
+        $order = commerce_order_load($cart_order_id[$uid]);
+        if ($order->uid == 0) {
+          // Convert it to an authenticated cart.
+          commerce_cart_order_convert($order, user_load($uid));
+        }
+      }
+      // Return order ID.
+      return (int) $cart_order_id[$uid];
+    }
+
+    // create new order.
+    $order = commerce_order_new($uid);
+
+    // Save it so it gets an order ID and return the full object.
+    commerce_order_save($order);
+
+    // Reset the cart cache
+    commerce_cart_order_ids_reset();
+
+    // Set order in session cache.
+    session_cache_set($order_cid, $order->order_id);
+
+    // Return order ID.
+    return (int) $order->order_id;
+
+  }
+
+  return NULL;
+
+}
