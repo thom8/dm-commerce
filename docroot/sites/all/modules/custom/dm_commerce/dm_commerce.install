@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Implements hook_enable().
+ */
+function dm_commerce_enable() {
+  // disable commerce_checkout_redirect module
+  module_disable(array('commerce_checkout_redirect'));
+}
