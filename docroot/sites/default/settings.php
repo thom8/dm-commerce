@@ -573,3 +573,27 @@ $vagrant_settings = '/home/vagrant/vagrant.settings.php';
 if (file_exists($vagrant_settings)) {
   include $vagrant_settings;
 }
+
+// drupal conf
+$conf['cache'] = TRUE;
+$conf['cache_lifetime'] = '300';
+$conf['page_cache_maximum_age'] = '900';
+$conf['preprocess_css'] = TRUE;
+$conf['preprocess_js'] = TRUE;
+
+// cacheexclude conf
+$conf['cacheexclude_list'] = <<<CACHE_EXCLUDE_PATHS
+cart
+checkout*
+CACHE_EXCLUDE_PATHS;
+
+// session_cache conf
+$conf['session_cache_storage_method'] = '2';
+$conf['session_cache_sid_source'] = '0';
+
+// memcache conf.
+$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['page_cache_without_database'] = TRUE;
+$conf['page_cache_invoke_hooks'] = FALSE;
