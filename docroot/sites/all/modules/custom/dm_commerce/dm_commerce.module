@@ -53,6 +53,11 @@ function dm_commerce_commerce_cart_order_id($uid){
     return (int) $order->order_id;
 
   }
+  elseif (!empty($_SESSION) ){
+
+    $order_cid = 'dm_commerce_order_id_' . session_cache_get_sid();
+    commerce_cart_order_session_save(session_cache_get($order_cid));
+  }
 
   return NULL;
 
