@@ -15,8 +15,8 @@ vagrantup_provision: no
 
 # Import database
 # available types: file, sql-sync
-#db_import_type: file
-#db_import_source: db/example.sql
+db_import_type: file
+db_import_source: db/dm_commerce.sql
 
 # A list of synced folders, with the keys 'local_path', 'destination', and 'id'.
 # You can use NFS by switching the 'type' to 'nfs'.
