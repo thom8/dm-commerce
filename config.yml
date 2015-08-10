@@ -18,6 +18,12 @@ vagrantup_provision: no
 db_import_type: file
 db_import_source: db/dm_commerce.sql
 
+# Drush site install
+#drush_site_install: yes
+#drupal_site_name: "Commerce Kickstart"
+#drupal_user: "drupal"
+#drupal_password: "drupal"
+
 # A list of synced folders, with the keys 'local_path', 'destination', and 'id'.
 # You can use NFS by switching the 'type' to 'nfs'.
 vagrant_synced_folders:
