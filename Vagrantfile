@@ -11,9 +11,13 @@ Vagrant.configure(2) do |config|
     config.vm.box = vconfig['vagrant_box']
   end
 
+  # Check for plugins and install if not.
+  %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
+  %x(vagrant plugin install vagrant-bindfs) unless Vagrant.has_plugin?('vagrant-bindfs')
+
   # Upload vcl file.
   config.vm.provision "upload_vcl", type: "file" do |vcl|
-    vcl.source = "./default.vcl"
+    vcl.source = "vagrant-includes/default.vcl"
     vcl.destination = "/home/vagrant/default.vcl"
   end
 
