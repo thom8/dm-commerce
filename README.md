@@ -6,6 +6,7 @@
 
   ```
   git clone https://github.com/thom8/dm-commerce.git
+  cd dm-commerce
   vagrant up
   ```
 
