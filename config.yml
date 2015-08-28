@@ -8,10 +8,10 @@ vagrant_hostname: dm-commerce.local
 vagrant_ip: 192.168.2.24
 
 # Update ansible roles before provisioning
-update_ansiable_roles: no
+update_ansible_roles: no
 
 # Run provision on vagrant up
-vagrantup_provision: no
+vagrantup_provision: yes
 
 # Import database
 # available types: file, sql-sync
